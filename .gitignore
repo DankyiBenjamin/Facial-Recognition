@@ -192,3 +192,4 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+dataset/ds_model_vggface_detector_opencv_aligned_normalization_base_expand_0.pkl

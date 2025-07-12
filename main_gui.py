@@ -2,8 +2,8 @@
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-from register_faces import register_user
-from recognize_log import recognize_and_log
+from register import register_user
+from recognizer import recognize_and_log
 import pandas as pd
 import os
 
@@ -15,7 +15,6 @@ os.makedirs("logs", exist_ok=True)
 # Callback Functions
 # ---------------------------
 
-
 def handle_register():
     user_id = entry_user_id.get().strip()
     if not user_id:
@@ -25,11 +24,9 @@ def handle_register():
     messagebox.showinfo("Success", f"Face registered for: {user_id}")
     entry_user_id.delete(0, tk.END)
 
-
 def handle_recognize():
     recognize_and_log()
     messagebox.showinfo("Info", "Recognition session ended.")
-
 
 def show_attendance_log():
     log_path = "logs/attendance.csv"
@@ -44,8 +41,7 @@ def show_attendance_log():
     frame = ttk.Frame(log_window, padding=10)
     frame.pack(fill=tk.BOTH, expand=True)
 
-    text = tk.Text(frame, wrap=tk.WORD, width=80,
-                   height=20, font=("Consolas", 10))
+    text = tk.Text(frame, wrap=tk.WORD, width=80, height=20, font=("Consolas", 10))
     text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
     if df.empty:
@@ -76,8 +72,7 @@ btn_font = ("Helvetica", 11)
 # Header
 # ---------------------------
 
-ttk.Label(root, text="Smart Attendance System",
-          font=heading_font, anchor="center").pack(pady=20)
+ttk.Label(root, text="Smart Attendance System", font=heading_font, anchor="center").pack(pady=20)
 
 # ---------------------------
 # User ID Entry
@@ -86,8 +81,7 @@ ttk.Label(root, text="Smart Attendance System",
 frame_entry = ttk.Frame(root, padding=10)
 frame_entry.pack()
 
-ttk.Label(frame_entry, text="Enter User ID:", font=label_font).grid(
-    row=0, column=0, padx=5, pady=10)
+ttk.Label(frame_entry, text="Enter User ID:", font=label_font).grid(row=0, column=0, padx=5, pady=10)
 entry_user_id = ttk.Entry(frame_entry, font=("Helvetica", 11), width=25)
 entry_user_id.grid(row=0, column=1, padx=5)
 
@@ -98,19 +92,15 @@ entry_user_id.grid(row=0, column=1, padx=5)
 frame_buttons = ttk.Frame(root, padding=10)
 frame_buttons.pack(pady=20)
 
-ttk.Button(frame_buttons, text="📷 Register Face", command=handle_register).grid(
-    row=0, column=0, padx=10, ipadx=10, ipady=5)
-ttk.Button(frame_buttons, text="🧠 Start Recognition", command=handle_recognize).grid(
-    row=0, column=1, padx=10, ipadx=10, ipady=5)
-ttk.Button(frame_buttons, text="📄 View Attendance Log", command=show_attendance_log).grid(
-    row=1, column=0, columnspan=2, pady=15, ipadx=20, ipady=5)
+ttk.Button(frame_buttons, text="📷 Register Face", command=handle_register).grid(row=0, column=0, padx=10, ipadx=10, ipady=5)
+ttk.Button(frame_buttons, text="🧠 Start Recognition", command=handle_recognize).grid(row=0, column=1, padx=10, ipadx=10, ipady=5)
+ttk.Button(frame_buttons, text="📄 View Attendance Log", command=show_attendance_log).grid(row=1, column=0, columnspan=2, pady=15, ipadx=20, ipady=5)
 
 # ---------------------------
 # Footer
 # ---------------------------
 
-ttk.Label(root, text="Developed with ❤️ using OpenCV & DeepFace", font=(
-    "Helvetica", 9), foreground="#666").pack(side=tk.BOTTOM, pady=10)
+ttk.Label(root, text="Developed with ❤️ using OpenCV & DeepFace", font=("Helvetica", 9), foreground="#666").pack(side=tk.BOTTOM, pady=10)
 
 # ---------------------------
 # Launch the app
